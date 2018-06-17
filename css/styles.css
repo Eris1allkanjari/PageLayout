@@ -98,3 +98,21 @@ footer .links a {
 footer .links li:not(:first-child) {
   margin-left: .5em;
 }
+
+
+.box{
+  
+  margin-top: 10%;
+  margin-bottom: 10%; 
+  height: 10%; 
+  width: 10% ;
+  padding: 5%;
+  border: 2px solid black;
+  float: right;
+  display: flex;
+  flex-direction: column;
+  
+  
+  
+  
+}
