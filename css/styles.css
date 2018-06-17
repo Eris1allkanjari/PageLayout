@@ -1,6 +1,7 @@
 html, body {
   /* Variables */
   --header-height: 56px;
+  --navbar-height: 48px;
   --footer-height: 48px;
   --accent-color: #3f51b5;
   --success-color: #4caf50;
@@ -14,27 +15,77 @@ html, body {
   color: var(--text-color);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+body.navbar-expanded header .title .menu-icon {
+  transform: rotateX(180deg);
+}
+body:not(.navbar-expanded) div[role="main"] {
+  margin-top: calc(-1 * var(--navbar-height));
+}
+header {
+  background-color: var(--accent-color);
+  z-index: 450;
+}
 header, footer {
   height: var(--header-height);
-  padding: 0 2rem;
+  padding: 0 1rem;
   display: flex;
-  align-items: center; /* Vertical Align */
-  justify-content: space-between; /* Horizontal Align, children push each-other */
+  align-items: center;
+  justify-content: space-between;
 }
-header .title, footer .title {
+header .title, footer .title, header .title a, footer .title a {
   color: var(--text-color);
   font-size: 18pt;
   font-weight: bold;
-  text-decoration: unset;
 }
-main {
+header .title {
+  display: flex;
+  align-items: center;
+}
+header .title a {
+  color: white;
+  margin-left: .5rem;
+}
+header .menu-icon {
+  margin-top: 4px;
+  cursor: pointer;
+  transition: .3s ease;
+  border-top: 1rem solid white;
+  border-right: .7rem solid transparent;
+  border-left: .7rem solid transparent;
+}
+nav.navbar {
+  height: var(--navbar-height);
+  display: flex;
+}
+ul.tabs {
+  display: flex;
+  margin: auto auto 0 auto;
+}
+ul.tabs > li {
+  flex: 1;
+  width: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1rem;
+  border: 1px inset #ddd;
+  border-bottom: none;
+}
+ul.tabs > li > a {
+  flex: 1;
+  padding: .25em .5em;
+}
+div[role="main"] {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  transition: .3s ease;
+}
+main {
+  flex: 1;
 }
 footer {
-  height: var(--footer-height); /* Overriding previous applied value (in "header, footer" selector above) */
+  height: var(--footer-height);
 }
 footer .title {
   font-size: unset;
@@ -45,65 +96,4 @@ footer .links a {
 }
 footer .links li:not(:first-child) {
   margin-left: .5em;
-}
-.buttons-bar {
-  border-radius: 100vw;
-}
-.buttons-bar, .comments-container {
-  padding: 1em;
-  max-width: 50vw; /* To be changed for mobiles to "unset" */
-  margin: 1rem auto;
-}
-.comments-container, .comment, .new-comment textarea {
-  border-radius: 4px;
-}
-.comment, .new-comment textarea {
-  margin-bottom: 1rem;
-}
-.comment {
-  display: flex;
-  padding: .25em .75em;
-}
-.comment-details {
-  display: flex;
-  flex-direction: column;
-  text-align: end;
-  margin-right: .75rem;
-}
-.comment hr {
-  border-style: dotted;
-  border-color: #aaa;
-}
-.comment-content {
-  margin-left: .75rem;
-  word-break: break-word;
-}
-.new-comment {
-  display: flex;
-  flex-direction: column;
-}
-.new-comment textarea {
-  border: none;
-  transition: .3s ease;
-  border-bottom: 2px solid var(--accent-color);
-}
-.new-comment label {
-  order: -1; /* Change the order with textarea */
-  color: var(--accent-color);
-}
-.new-comment .fab {
-  margin-left: auto;
-}
-/* New comment textarea states */
-.new-comment textarea:invalid {
-  border-bottom-color: var(--danger-color);
-}
-.new-comment textarea:invalid ~ label {
-  color: var(--danger-color);
-}
-.new-comment textarea:not([value=""]):valid {
-  border-bottom-color: var(--success-color);
-}
-.new-comment textarea:not([value=""]):valid ~ label {
-  color: var(--success-color);
 }
