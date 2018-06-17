@@ -83,6 +83,7 @@ div[role="main"] {
 }
 main {
   flex: 1;
+  overflow: auto;
 }
 footer {
   height: var(--footer-height);
